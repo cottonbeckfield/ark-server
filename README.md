@@ -1,4 +1,4 @@
-# AWS Ark: Survival Evoled Server
+# AWS Ark: Survival Evolved Server
 
 ### Dependencies
 1. Ensure you have installed Terraform. For instructions, see Hashicorp's page: https://learn.hashicorp.com/terraform/getting-started/install.html
@@ -16,6 +16,8 @@ access_key = "ADFADFASFASFA"
 secret_key = "ASDFASDFASDFA"
 key_name = "ark"
 ```
+4. Test the template to ensure it's working:
+`terraform plan -var-file=./terraform.tfvars -input=false`
 
-4. Execute template:
+5. Execute template:
 `terraform apply -var-file=./ark.tfvars -input=false`
