@@ -4,7 +4,7 @@
 1. Ensure you have installed Terraform. For instructions, see Hashicorp's page: https://learn.hashicorp.com/terraform/getting-started/install.html
 
 ### Setup Server
-1. Clone this repoistory.
+1. Clone this repository.
 
 2. Ensure the directory is initialized with Terraform by running terraform init from inside the directory:
 `terraform init`
