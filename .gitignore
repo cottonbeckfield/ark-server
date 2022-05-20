@@ -3,6 +3,6 @@ terraform.tfvars
 terraform.tfstate.*
 terraform.tfstate*
 *.pem
-ark.tfvars
 ark
-ark.pub
+*.pub
+*.tfvars
