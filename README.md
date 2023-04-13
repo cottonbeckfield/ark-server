@@ -17,7 +17,14 @@ secret_key = "ASDFASDFASDFA"
 key_name = "ark"
 ```
 4. Test the template to ensure it's working:
-`terraform plan -var-file=./terraform.tfvars -input=false`
+`terraform plan -var-file=./ark.tfvars -input=false`
 
 5. Execute template:
 `terraform apply -var-file=./ark.tfvars -input=false`
+
+6. ssh into
+
+`ssh -i "arkkey.pem" ubuntu@ec2-54-71-238-67.us-west-2.compute.amazonaws.com`
+
+7. follow [this link](https://github.com/arkmanager/ark-server-tools) for instructions on installing/managing ark on the server
+

@@ -4,13 +4,17 @@ provider "aws" {
     secret_key = var.secret_key
 }
 
-data "aws_ami" "ubuntu-18_04" {
+data "aws_ami" "ubuntu-20_04" {
     most_recent = true
     owners = ["099720109477"] # Canonical
 
     filter {
         name   = "name"
-        values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+        values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    }
+    filter {
+        name = "virtualization-type"
+        values = ["hvm"]
     }
 }
 
@@ -74,24 +78,25 @@ resource "aws_security_group" "ark_ports" {
 }
 
 resource "aws_instance" "ark-server" {
-    ami           = data.aws_ami.ubuntu-18_04.id
+    ami           = data.aws_ami.ubuntu-20_04.id
     instance_type = "t2.large"
     key_name      = var.key_name
-    security_groups = [aws_security_group.ark_ports.name]
+    vpc_security_group_ids = [aws_security_group.ark_ports.id]
     associate_public_ip_address = true
 
     ebs_block_device {
       device_name = "/dev/sdb"
-      volume_type = "gp2"
+      volume_type = "gp3"
       volume_size = "50"
       delete_on_termination = true
     }
 
     tags = {
-      Appliation = "ark"
+      Appliation = "ark",
+      OS = "UBUNTU"
     }
 }
 
 output "image_id" {
-    value = data.aws_ami.ubuntu-18_04.id
+    value = data.aws_ami.ubuntu-20_04.id
 }
